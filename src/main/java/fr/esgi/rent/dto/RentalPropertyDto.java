@@ -8,7 +8,7 @@ public class RentalPropertyDto {
     private String description;
     private String town;
     private String address;
-    
+
     public UUID getId() {
         return id;
     }

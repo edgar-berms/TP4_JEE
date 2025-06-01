@@ -10,6 +10,11 @@ class ApplicationTest {
     void contextLoads() {
     }
 
+    @Test
+    void mainMethodShouldRunWithoutErrors() {
+        Application.main(new String[]{});
+    }
+
 }
 
 

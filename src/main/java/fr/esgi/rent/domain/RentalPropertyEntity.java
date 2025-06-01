@@ -201,26 +201,4 @@ public class RentalPropertyEntity {
         this.hasParkingSpace = hasParkingSpace;
     }
 
-    @Override
-    public String toString() {
-        return "RentalPropertyEntity{" +
-                "id=" + id +
-                ", description='" + description + '\'' +
-                ", town='" + town + '\'' +
-                ", address='" + address + '\'' +
-                ", propertyType=" + propertyType +
-                ", rentAmount=" + rentAmount +
-                ", securityDepositAmount=" + securityDepositAmount +
-                ", area=" + area +
-                ", numberOfBedrooms=" + numberOfBedrooms +
-                ", floorNumber=" + floorNumber +
-                ", numberOfFloors=" + numberOfFloors +
-                ", constructionYear=" + constructionYear +
-                ", energyClassification=" + energyClassification +
-                ", hasElevator=" + hasElevator +
-                ", hasIntercom=" + hasIntercom +
-                ", hasBalcony=" + hasBalcony +
-                ", hasParkingSpace=" + hasParkingSpace +
-                '}';
-    }
 }

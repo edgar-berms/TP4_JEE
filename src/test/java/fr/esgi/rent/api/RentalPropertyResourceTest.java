@@ -1,6 +1,8 @@
 package fr.esgi.rent.api;
 
 import fr.esgi.rent.domain.RentalPropertyEntity;
+import fr.esgi.rent.repository.EnergyClassificationRepository;
+import fr.esgi.rent.repository.PropertyTypeRepository;
 import fr.esgi.rent.repository.RentalPropertyRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +27,14 @@ class RentalPropertyResourceTest {
     @MockBean
     private RentalPropertyRepository rentalPropertyRepository;
 
+    @MockBean
+    private PropertyTypeRepository propertyTypeRepository;
+
+    @MockBean
+    private EnergyClassificationRepository energyClassificationRepository;
+
     @Test
     void shouldReturnListOfRentalProperties() throws Exception {
-        // Given
         RentalPropertyEntity rental = new RentalPropertyEntity();
         rental.setId(UUID.randomUUID());
         rental.setDescription("Studio");
@@ -36,7 +43,6 @@ class RentalPropertyResourceTest {
 
         when(rentalPropertyRepository.findAll()).thenReturn(Collections.singletonList(rental));
 
-        // When / Then
         mockMvc.perform(get("/api/rental-properties"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].description").value("Studio"))
@@ -47,7 +53,6 @@ class RentalPropertyResourceTest {
     @Test
     void shouldReturnPropertyById() throws Exception {
         UUID id = UUID.randomUUID();
-
         RentalPropertyEntity entity = new RentalPropertyEntity();
         entity.setId(id);
         entity.setDescription("Studio");
@@ -61,5 +66,4 @@ class RentalPropertyResourceTest {
                 .andExpect(jsonPath("$.description").value("Studio"))
                 .andExpect(jsonPath("$.town").value("Paris"));
     }
-
 }

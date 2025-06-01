@@ -9,6 +9,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Collections;
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.mockito.Mockito.when;
@@ -42,4 +43,23 @@ class RentalPropertyResourceTest {
                 .andExpect(jsonPath("$[0].town").value("Paris"))
                 .andExpect(jsonPath("$[0].address").value("10 rue test"));
     }
+
+    @Test
+    void shouldReturnPropertyById() throws Exception {
+        UUID id = UUID.randomUUID();
+
+        RentalPropertyEntity entity = new RentalPropertyEntity();
+        entity.setId(id);
+        entity.setDescription("Studio");
+        entity.setTown("Paris");
+        entity.setAddress("10 rue A");
+
+        when(rentalPropertyRepository.findById(id)).thenReturn(Optional.of(entity));
+
+        mockMvc.perform(get("/api/rental-properties/" + id))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.description").value("Studio"))
+                .andExpect(jsonPath("$.town").value("Paris"));
+    }
+
 }

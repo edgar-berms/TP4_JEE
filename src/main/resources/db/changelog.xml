@@ -5,8 +5,26 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <include file="/db/changelog/1.0.0.xml"/>
+    <!-- Création des tables et contraintes -->
+    <include file="db/changelog/1.0.0.xml"/>
 
-    <include file="db/data/data-initial-load.xml"/>
+    <!-- Chargement des données depuis les fichiers .sql -->
+    <changeSet id="load-energy-data" author="esgi">
+        <sqlFile path="sql/energy_classification.sql"
+                 relativeToChangelogFile="true"
+                 encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="load-property-type-data" author="esgi">
+        <sqlFile path="sql/property_type.sql"
+                 relativeToChangelogFile="true"
+                 encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="load-rental-property-data" author="esgi">
+        <sqlFile path="sql/rental_property.sql"
+                 relativeToChangelogFile="true"
+                 encoding="UTF-8"/>
+    </changeSet>
 
 </databaseChangeLog>

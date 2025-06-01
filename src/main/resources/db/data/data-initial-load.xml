@@ -1,33 +1,39 @@
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
 
     <changeSet id="insert-energy-classes" author="esgi">
         <insert tableName="energy_classification">
-            <column name="id" value="00000000-0000-0000-0000-000000000001"/>
+            <column name="id" valueComputed="UNHEX(REPLACE('00000000-0000-0000-0000-000000000001', '-', ''))"/>
             <column name="designation" value="A"/>
         </insert>
         <insert tableName="energy_classification">
-            <column name="id" value="00000000-0000-0000-0000-000000000002"/>
+            <column name="id" valueComputed="UNHEX(REPLACE('00000000-0000-0000-0000-000000000002', '-', ''))"/>
             <column name="designation" value="B"/>
         </insert>
     </changeSet>
 
     <changeSet id="insert-property-types" author="esgi">
         <insert tableName="property_type">
-            <column name="id" value="10000000-0000-0000-0000-000000000001"/>
+            <column name="id" valueComputed="UNHEX(REPLACE('10000000-0000-0000-0000-000000000001', '-', ''))"/>
             <column name="designation" value="Appartement"/>
+        </insert>
+        <insert tableName="property_type">
+            <column name="id" valueComputed="UNHEX(REPLACE('10000000-0000-0000-0000-000000000002', '-', ''))"/>
+            <column name="designation" value="Maison"/>
         </insert>
     </changeSet>
 
     <changeSet id="insert-rental-properties" author="esgi">
         <insert tableName="rental_property">
-            <column name="id" value="20000000-0000-0000-0000-000000000001"/>
+            <column name="id" valueComputed="UNHEX(REPLACE('20000000-0000-0000-0000-000000000001', '-', ''))"/>
             <column name="description" value="Beau studio proche métro"/>
             <column name="town" value="Paris"/>
             <column name="address" value="10 rue des Lilas"/>
-            <column name="property_type_id" value="10000000-0000-0000-0000-000000000001"/>
+            <column name="property_type_id" valueComputed="UNHEX(REPLACE('10000000-0000-0000-0000-000000000001', '-', ''))"/>
             <column name="rent_amount" valueNumeric="750.0"/>
             <column name="security_deposit_amount" valueNumeric="1000.0"/>
             <column name="area" valueNumeric="25.0"/>
@@ -35,11 +41,12 @@
             <column name="floor_number" valueNumeric="2"/>
             <column name="number_of_floors" valueNumeric="5"/>
             <column name="construction_year" valueNumeric="2010"/>
-            <column name="energy_classification_id" value="00000000-0000-0000-0000-000000000001"/>
+            <column name="energy_classification_id" valueComputed="UNHEX(REPLACE('00000000-0000-0000-0000-000000000001', '-', ''))"/>
             <column name="has_elevator" valueBoolean="true"/>
             <column name="has_intercom" valueBoolean="true"/>
             <column name="has_balcony" valueBoolean="false"/>
             <column name="has_parking_space" valueBoolean="false"/>
         </insert>
     </changeSet>
+
 </databaseChangeLog>

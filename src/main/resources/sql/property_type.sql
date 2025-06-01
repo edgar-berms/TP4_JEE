@@ -1,0 +1,2 @@
+INSERT INTO property_type (id, designation) VALUES ('10000000-0000-0000-0000-000000000001', 'Appartement');
+INSERT INTO property_type (id, designation) VALUES ('10000000-0000-0000-0000-000000000002', 'Maison');
